@@ -1,6 +1,5 @@
 
-(function () {
-
+export {};
   let words = ["daisy", "henge", "roots", "bathe", "shoes", "fluff", "dirty", "clean", "roads", "kitty", "tiger", "grass", "bench", "range", "acres", "blank", "walls", "viola", "words", "hives", "hover", "mouse", "honey", "scarf", "trees", "hares", "books", "tease", "zebra", "lolly"];
   
   const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
@@ -10,20 +9,19 @@
   let guessNumber = 0;
 
   let alphabetString = alphabet.join('');
-  let alphabetDiv = document.querySelector("#alphabet");
+  let alphabetDiv = <HTMLElement>document.querySelector("#alphabet");
   alphabetDiv.innerHTML = alphabetString;
 
-  let inputField = document.querySelector(".textfield");
+  let inputField = <HTMLInputElement>document.querySelector(".textfield");
 
   inputField.addEventListener('keyup', (e) => {
  
       updateDisplay(inputField.value, e, chosenWord);
-
   });
 
-  function updateDisplay(guess, e, word) {
+  function updateDisplay(guess: string, e: KeyboardEvent, word: string): void {
 
-      let displayLetters = document.querySelectorAll(`letter-block-${guessNumber} > letter-input`); 
+      let displayLetters = document.querySelectorAll<HTMLElement>(`letter-block-${guessNumber} > letter-input`); 
       let guessArray = guess.toUpperCase().split(""); 
 
       if (e.key === 'Enter' && guess.length === 5) {
@@ -41,10 +39,10 @@
       
   }
 
-  function matchLetters(guess, word, boxes) {
+  function matchLetters(guess: string, word: string, boxes: NodeListOf<HTMLElement>) {
 
       console.log(word);
-      
+
       if (guessNumber >= 6) {
           inputField.setAttribute("readonly", "");
           inputField.value = "No more guesses!";
@@ -70,7 +68,7 @@
 
   }
 
-  function markCorrectMatches(guess, word, boxes) {
+  function markCorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
       guess.forEach(function (letter, index, guess) {
           if (letter === word[index]) {
               alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`;
@@ -81,7 +79,7 @@
       });
   }
 
-  function markSemicorrectMatches(guess, word, boxes) {
+  function markSemicorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
       guess.forEach(function (letter, index, guess) {
           if (word.indexOf(letter) !== -1) {
               alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"halfcorrect\">${letter}</span>`;
@@ -96,4 +94,3 @@
       });
   }
 
-}) ();

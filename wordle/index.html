@@ -1,13 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="src/styles.css">
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <style>
+      body, html {
+  background: #ebebeb;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: #035379
+}
+
+button {
+  font-size: 1.2em;
+}
+
+h2, h3, h4, input {
+  font-weight: normal;
+  color: #31384e;
+}
+
+input[type=text] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* hide this by setting to 100000 or something later */
+}
+
+input, #result, #alphabet, letter-input {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+#content {
+  box-sizing: border-box;
+  background: #ffffff;
+  padding: 50px;
+  max-width: 800px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+#alphabet {
+  color: #252525;
+  padding-top: 30px;
+  text-align: center;
+}
+
+#result, #alphabet {
+  letter-spacing: 0.1em;
+}
+
+letter-block-0, letter-block-1, letter-block-2, letter-block-3, letter-block-4, letter-block-5 {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+letter-input {
+  border: 1px solid #31384e;
+  padding: 0.2em;
+  text-align: center;
+  margin: 5px;
+  min-width: 1.2em;
+  min-height: 1.2em;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+button {
+  background:#035379;
+  color: #ffffff;
+  padding: 5px 20px;
+  border: none;
+  display: block;
+  margin: 20px auto 0;
+}
+
+.correct {
+  color: #03a340;
+}
+
+.halfcorrect {
+  color: #f3cf04;
+}
+
+.incorrect {
+  color: #919191;
+}
+
+.singleletter {
+  width: 1.1em;
+}
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="content">
+      <header><h1>Jenny's Wordle</h1></header>
+      <h2>Welcome to my programming experiment... Try and guess the 5 letter word!</h2>
+      <h3>Type in a word and hit enter. Green letters are in the correct place! Yellow letters are in the word, but somewhere else. Grey letters aren't in the word at all. Good luck!</h3>
+      <h4>(PS... I am very much a work in progress!)</h4>
+      <input type="text" class="textfield" maxlength="5">
+      <letter-block-0>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+      </letter-block-0>
+      <letter-block-1>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+      </letter-block-1>
+      <letter-block-2>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+      </letter-block-2>
+      <letter-block-3>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+      </letter-block-3>
+      <letter-block-4>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+      </letter-block-4>
+      <letter-block-5>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+          <letter-input></letter-input>
+      </letter-block-5>
+      <div id="result"></div>
+      <div id="alphabet"></div>
+      <div id="testfunction"></div>
+  </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
