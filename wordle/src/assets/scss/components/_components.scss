@@ -1,0 +1,29 @@
+input,
+#result,
+#alphabet,
+letter-input {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+#result,
+#alphabet {
+    letter-spacing: 0.1em;
+}
+
+.correct {
+    color: #03a340;
+}
+
+.halfcorrect {
+    color: #f3cf04;
+}
+
+.incorrect {
+    color: #919191;
+}
+
+.singleletter {
+    width: 1.1em;
+}

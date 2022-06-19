@@ -1,0 +1,19 @@
+letter-block-0,
+letter-block-1,
+letter-block-2,
+letter-block-3,
+letter-block-4,
+letter-block-5 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+letter-input {
+    border: 1px solid #31384e;
+    padding: 0.2em;
+    text-align: center;
+    margin: 5px;
+    min-width: 1.2em;
+    min-height: 1.2em;
+}
