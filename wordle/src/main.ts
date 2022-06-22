@@ -1,10 +1,12 @@
 import './assets/scss/main.scss';
+import { Alphabet } from './alphabet/alphabet';
 
 export {};
   let words = ["daisy", "henge", "roots", "bathe", "shoes", "fluff", "dirty", "clean", "roads", "kitty", "tiger", "grass", "bench", "range", "acres", "blank", "walls", "viola", "words", "hives", "hover", "mouse", "honey", "scarf", "trees", "hares", "books", "tease", "zebra", "lolly"];
   
   const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   const alphabetIndex = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const alpha = new Alphabet();
 
   let chosenWord = words[Math.floor(Math.random() * words.length)];
   let guessNumber = 0;
@@ -21,7 +23,6 @@ export {};
   });
 
   function updateDisplay(guess: string, e: KeyboardEvent, word: string): void {
-
       let displayLetters = document.querySelectorAll<HTMLElement>(`letter-block-${guessNumber} > letter-input`); 
       let guessArray = guess.toUpperCase().split(""); 
 
@@ -41,6 +42,7 @@ export {};
   }
 
   function matchLetters(guess: string, word: string, boxes: NodeListOf<HTMLElement>) {
+       
 
       console.log(word);
 
@@ -64,7 +66,7 @@ export {};
 
           inputField.value = "";
           guessNumber++;
-
+          alpha.debug();
       }
 
   }
@@ -72,7 +74,8 @@ export {};
   function markCorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
       guess.forEach(function (letter, index, guess) {
           if (letter === word[index]) {
-              alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`;
+                alpha.setCorrect(letter);
+              alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`; // this line marks letter as correct. We want to avoid this HTML stuff. Going to just log state of letter instead. 
               boxes[index].classList.add("correct");
               word[index] = "_";
               guess[index] = ".";
