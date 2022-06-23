@@ -1,5 +1,5 @@
 import './assets/scss/main.scss';
-import { Alphabet } from './alphabet/alphabet';
+import { Alphabet, Letters } from './alphabet/alphabet';
 
 export {};
   let words = ["daisy", "henge", "roots", "bathe", "shoes", "fluff", "dirty", "clean", "roads", "kitty", "tiger", "grass", "bench", "range", "acres", "blank", "walls", "viola", "words", "hives", "hover", "mouse", "honey", "scarf", "trees", "hares", "books", "tease", "zebra", "lolly"];
@@ -72,7 +72,7 @@ export {};
   }
 
   function markCorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
-      guess.forEach(function (letter, index, guess) {
+      guess.forEach(function (letter: Letters, index, guess) {
           if (letter === word[index]) {
                 alpha.setCorrect(letter);
               alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`; // this line marks letter as correct visually. We want to avoid this HTML stuff. Going to just log state of letter instead. 
@@ -100,3 +100,4 @@ export {};
       });
   }
 
+// Running into a pickle with my types! letter of guess may not always be an alphabetical letter (sometimes it's a . as letters that were correct guesses will have been turned to a dot.)

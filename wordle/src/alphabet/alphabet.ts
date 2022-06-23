@@ -1,3 +1,5 @@
+export type Letters = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z";
+
 export class Alphabet {
 
     // state saves the important info - JS version just stores how alphabet looks!
@@ -39,19 +41,19 @@ export class Alphabet {
     console.log(guess);
   }
 
-  setCorrect(letter: string): void {
+  setCorrect(letter: Letters): void {
     console.log(letter);
-    this.state[letter] = "Y"; // Why is TypeScript grumbling here?! Is it because letter is a string, but the keys are not technically strings? How do I get around this? Type: any?
+    this.state[letter] = "Y";
   }
   // marks letter as correct
 
-  setSemiCorrect(letter: string): void {
+  setSemiCorrect(letter: Letters): void {
     console.log(letter);
     this.state[letter] = "P"; 
   }
   // marks letter as partially correct
 
-  setIncorrect(letter: string): void {
+  setIncorrect(letter: Letters): void {
     console.log(letter);
     this.state[letter] = "N"; 
   }
@@ -59,6 +61,7 @@ export class Alphabet {
 
   debug() {
     console.log(this.state); // logs the state of the object created from the class
-    // HOMEWORK - make this log the state correctly - with the correct / incorrect letters marked. 
+    // HOMEWORK - change this to updateDisplay, make HTML actually correct for alphabet div, make the function work! 
   }
 }
+
