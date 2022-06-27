@@ -1,3 +1,4 @@
+
 export type Letters = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z";
 
 export class Alphabet {
@@ -57,11 +58,14 @@ export class Alphabet {
     console.log(letter);
     this.state[letter] = "N"; 
   }
-  // marks letter as partially correct
+  // marks letter as incorrect
 
-  debug() {
+  updateDisplay() {
     console.log(this.state); // logs the state of the object created from the class
     // HOMEWORK - change this to updateDisplay, make HTML actually correct for alphabet div, make the function work! 
+    // Ideas: 
+    // Could grab all letter HTML tags in alphabet div, then loop through keys of state, updating letter HTML [index] with style depending on value of property? But what if the alphabet changes order? This would then fail. 
+    // Could add an id to each letter HTML tag and identify them that way? getElementById? 
   }
 }
 

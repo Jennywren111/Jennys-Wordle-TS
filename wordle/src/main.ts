@@ -66,15 +66,15 @@ export {};
 
           inputField.value = "";
           guessNumber++;
-          alpha.debug();
+          alpha.updateDisplay();
       }
 
   }
 
   function markCorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
-      guess.forEach(function (letter: Letters, index, guess) {
+      guess.forEach(function (letter, index, guess) {
           if (letter === word[index]) {
-                alpha.setCorrect(letter);
+                alpha.setCorrect(<Letters>letter);
               alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`; // this line marks letter as correct visually. We want to avoid this HTML stuff. Going to just log state of letter instead. 
               boxes[index].classList.add("correct");
               word[index] = "_";
@@ -86,18 +86,17 @@ export {};
   function markSemicorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
       guess.forEach(function (letter, index, guess) {
           if (word.indexOf(letter) !== -1) {
-                alpha.setSemiCorrect(letter);
+                alpha.setSemiCorrect(<Letters>letter); // Casting using <Letters> - this only helps at compile time! Is gone by the time the code is run. This is why casting is bad!
               alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"halfcorrect\">${letter}</span>`;
               boxes[index].classList.add("halfcorrect");
               word[word.indexOf(letter.toUpperCase())] = "_";
               guess[index] = ".";
           }
           else if (letter !== ".") {
-                alpha.setIncorrect(letter);
+                alpha.setIncorrect(<Letters>letter);
               boxes[index].classList.add("incorrect");
               alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"incorrect\">${letter}</span>`;
           }
       });
   }
 
-// Running into a pickle with my types! letter of guess may not always be an alphabetical letter (sometimes it's a . as letters that were correct guesses will have been turned to a dot.)
