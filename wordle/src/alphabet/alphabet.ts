@@ -60,12 +60,15 @@ export class Alphabet {
   }
   // marks letter as incorrect
 
-  updateDisplay() {
+  updateDisplay(letter: string, style: string): void {
     console.log(this.state); // logs the state of the object created from the class
     // HOMEWORK - change this to updateDisplay, make HTML actually correct for alphabet div, make the function work! 
     // Ideas: 
-    // Could grab all letter HTML tags in alphabet div, then loop through keys of state, updating letter HTML [index] with style depending on value of property? But what if the alphabet changes order? This would then fail. 
-    // Could add an id to each letter HTML tag and identify them that way? getElementById? 
+    // Could pass in letter, add class to id?
+    debugger;
+    console.log(document);
+    document.getElementById(letter.toLowerCase())?.classList.add(style); // Not adding style! Need to debug
+    // But I should be doing this using one function call at the end of the checking, and referring to state rather than relying on the old functions?
   }
 }
 

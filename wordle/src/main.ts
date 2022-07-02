@@ -10,10 +10,11 @@ export {};
 
   let chosenWord = words[Math.floor(Math.random() * words.length)];
   let guessNumber = 0;
-
+    /*
   let alphabetString = alphabet.join('');
   let alphabetDiv = <HTMLElement>document.querySelector("#alphabet");
   alphabetDiv.innerHTML = alphabetString;
+  */
 
   let inputField = <HTMLInputElement>document.querySelector(".textfield");
 
@@ -60,23 +61,25 @@ export {};
           markCorrectMatches(guessArray, wordArray, boxes);
 
           markSemicorrectMatches(guessArray, wordArray, boxes);
-
+        /*
           alphabetString = alphabet.join('');
           alphabetDiv.innerHTML = alphabetString;
+        */
 
           inputField.value = "";
           guessNumber++;
-          alpha.updateDisplay();
+          // alpha.updateDisplay();
       }
 
   }
 
-  function markCorrectMatches(guess: string[], word: string[], boxes: NodeListOf<HTMLElement>) {
+  function markCorrectMatches(guess: string[], word: string[], /*boxes: NodeListOf<HTMLElement> */) {
       guess.forEach(function (letter, index, guess) {
           if (letter === word[index]) {
                 alpha.setCorrect(<Letters>letter);
-              alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`; // this line marks letter as correct visually. We want to avoid this HTML stuff. Going to just log state of letter instead. 
-              boxes[index].classList.add("correct");
+              // alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`; // this line marks letter as correct visually. We want to avoid this HTML stuff. Going to just log state of letter instead. 
+              // boxes[index].classList.add("correct"); // replace this with function call updateDisplay.
+              alpha.updateDisplay(letter, "correct");
               word[index] = "_";
               guess[index] = ".";
           }
@@ -87,7 +90,7 @@ export {};
       guess.forEach(function (letter, index, guess) {
           if (word.indexOf(letter) !== -1) {
                 alpha.setSemiCorrect(<Letters>letter); // Casting using <Letters> - this only helps at compile time! Is gone by the time the code is run. This is why casting is bad!
-              alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"halfcorrect\">${letter}</span>`;
+              // alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"halfcorrect\">${letter}</span>`;
               boxes[index].classList.add("halfcorrect");
               word[word.indexOf(letter.toUpperCase())] = "_";
               guess[index] = ".";
@@ -95,7 +98,7 @@ export {};
           else if (letter !== ".") {
                 alpha.setIncorrect(<Letters>letter);
               boxes[index].classList.add("incorrect");
-              alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"incorrect\">${letter}</span>`;
+              // alphabet[alphabet.indexOf(letter.toUpperCase())] = `<span class=\"incorrect\">${letter}</span>`;
           }
       });
   }
