@@ -60,15 +60,15 @@ export class Alphabet {
   }
   // marks letter as incorrect
 
-  updateDisplay(letter: string, style: string): void {
-    console.log(this.state); // logs the state of the object created from the class
-    // HOMEWORK - change this to updateDisplay, make HTML actually correct for alphabet div, make the function work! 
-    // Ideas: 
-    // Could pass in letter, add class to id?
-    debugger;
-    console.log(document);
-    document.getElementById(letter.toLowerCase())?.classList.add(style); // Not adding style! Need to debug
-    // But I should be doing this using one function call at the end of the checking, and referring to state rather than relying on the old functions?
+  updateAlphabetDisplay(): void {
+    // Loop through keys in state. If value is Y, find <letter> with id letter-${key}, add class correct. 
+    let stateObject = Object.entries(this.state);
+    console.log(stateObject);
+    stateObject.forEach(item => {
+      if (item[1] === "Y") {
+        document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("correct");
+      }
+    });
   }
 }
 

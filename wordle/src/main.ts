@@ -20,10 +20,10 @@ export {};
 
   inputField.addEventListener('keyup', (e) => {
  
-      updateDisplay(inputField.value, e, chosenWord);
+      updateAlphabetDisplay(inputField.value, e, chosenWord);
   });
 
-  function updateDisplay(guess: string, e: KeyboardEvent, word: string): void {
+  function updateAlphabetDisplay(guess: string, e: KeyboardEvent, word: string): void {
       let displayLetters = document.querySelectorAll<HTMLElement>(`letter-block-${guessNumber} > letter-input`); 
       let guessArray = guess.toUpperCase().split(""); 
 
@@ -65,10 +65,9 @@ export {};
           alphabetString = alphabet.join('');
           alphabetDiv.innerHTML = alphabetString;
         */
-
+          alpha.updateAlphabetDisplay();
           inputField.value = "";
           guessNumber++;
-          // alpha.updateDisplay();
       }
 
   }
@@ -78,8 +77,7 @@ export {};
           if (letter === word[index]) {
                 alpha.setCorrect(<Letters>letter);
               // alphabet[alphabetIndex.indexOf(letter.toUpperCase())] = `<span class=\"correct\">${letter}</span>`; // this line marks letter as correct visually. We want to avoid this HTML stuff. Going to just log state of letter instead. 
-              // boxes[index].classList.add("correct"); // replace this with function call updateDisplay.
-              alpha.updateDisplay(letter, "correct");
+              // boxes[index].classList.add("correct"); // replace this with function call updateAlphabetDisplay.
               word[index] = "_";
               guess[index] = ".";
           }
