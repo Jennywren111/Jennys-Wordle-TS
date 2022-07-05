@@ -52,7 +52,7 @@ export class Alphabet {
     console.log(letter);
     this.state[letter] = "P"; 
   }
-  // marks letter as partially correct
+  // marks letter as partially correct - ***note to self - check this is not overriding correct if someone inadvertantly moves their correct letter in their next guess***
 
   setIncorrect(letter: Letters): void {
     console.log(letter);
@@ -68,6 +68,13 @@ export class Alphabet {
       if (item[1] === "Y") {
         document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("correct");
       }
+      else if (item[1] === "P") {
+        document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("halfcorrect");
+      }
+      else if (item[1] === "N") {
+        document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("incorrect");
+      }
+      // ***Note to self - classList.add is piling classes up in the letters, not swapping them! CHANGE THIS CODE***
     });
   }
 }
