@@ -64,16 +64,25 @@ export class Alphabet {
     // Loop through keys in state. If value is Y, find <letter> with id letter-${key}, add class correct. 
     let stateObject = Object.entries(this.state);
     console.log(stateObject);
+    
     stateObject.forEach(item => {
+
+      let currentClass = "unknown";
+      let letterElement = document.getElementById(`${item[0].toLowerCase()}`);
+
       if (item[1] === "Y") {
-        document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("correct");
+        currentClass = "correct";
       }
       else if (item[1] === "P") {
-        document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("halfcorrect");
+        currentClass = "halfcorrect";
       }
       else if (item[1] === "N") {
-        document.getElementById(`${item[0].toLowerCase()}`)?.classList.add("incorrect");
+        currentClass = "incorrect";
       }
+
+      letterElement.className = "";
+      letterElement.classList.add(currentClass);
+      console.log(document.getElementById(`${item[0].toLowerCase()}`));
       // ***Note to self - classList.add is piling classes up in the letters, not swapping them! CHANGE THIS CODE***
     });
   }
