@@ -1,6 +1,6 @@
 
 export type Letters = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z";
-
+let instance: Alphabet;
 export class Alphabet {
 
     // state saves the important info - JS version just stores how alphabet looks!
@@ -36,6 +36,14 @@ export class Alphabet {
 
   constructor() {
 
+  }
+  
+  // this function can be run off the class as it's 'static'. (most methods aren't accessible off the class itself, only an instance.) Can add console logs and things to log when it's called, or only return if a certain condition is met.
+  static create(): Alphabet {
+    if (!instance) {
+      instance = new Alphabet();
+    }
+    return instance;
   }
   
   processWord(guess: string): void {
@@ -78,7 +86,7 @@ export class Alphabet {
 
       letterElement!.className = "";
       letterElement!.classList.add(currentClass);
-      console.log(document.getElementById(`${item[0].toLowerCase()}`));
+      // console.log(document.getElementById(`${item[0].toLowerCase()}`));
     });
   }
 }

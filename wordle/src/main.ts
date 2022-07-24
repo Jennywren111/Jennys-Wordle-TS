@@ -1,24 +1,25 @@
 import './assets/scss/main.scss';
 import { Alphabet, Letters } from './alphabet/alphabet';
+import { words } from './words/words';
 
 export {};
-  let words = ["daisy", "henge", "roots", "bathe", "shoes", "fluff", "dirty", "clean", "roads", "kitty", "tiger", "grass", "bench", "range", "acres", "blank", "walls", "viola", "words", "hives", "hover", "mouse", "honey", "scarf", "trees", "hares", "books", "tease", "zebra", "lolly"];
-  
-  const alpha = new Alphabet();
+    
+  const alpha = Alphabet.create(); // This is called a factory method - creates a new thing from class. 
 
   let chosenWord = words[Math.floor(Math.random() * words.length)];
   let guessNumber = 0;
 
+    // HOMEWORK! Move the below variable and method into a module. Pass it the arrow function. 
   let inputField = <HTMLInputElement>document.querySelector(".textfield");
 
   inputField.addEventListener('keyup', (e) => {
  
-      updateAlphabetDisplay(inputField.value, e, chosenWord);
+      processGuess(inputField.value, e, chosenWord);
   });
 
-  function updateAlphabetDisplay(guess: string, e: KeyboardEvent, word: string): void {
+  function processGuess(guess: string, e: KeyboardEvent, word: string): void {
       let displayLetters = document.querySelectorAll<HTMLElement>(`letter-block-${guessNumber} > letter-input`); 
-      let guessArray = guess.toUpperCase().split(""); 
+      let guessArray = guess.toUpperCase().split(""); // Deal with this as part of the above homework
 
       if (e.key === 'Enter' && guess.length === 5) {
           matchLetters(guess, word, displayLetters);
@@ -34,6 +35,8 @@ export {};
       });
       
   }
+
+// HOMEWORK! Do this first. Create a class 'guessProcessor' or something logical, and add those functions to it. 
 
   function matchLetters(guess: string, word: string, boxes: NodeListOf<HTMLElement>) {
        
